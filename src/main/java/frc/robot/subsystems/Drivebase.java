@@ -17,16 +17,16 @@ public class Drivebase extends SubsystemBase {
   private CANSparkMax rightMotor = new CANSparkMax(0, MotorType.kBrushless);
  
   public Drivebase() {
-
-    diffDrive = new DifferentialDrive(leftMotor, rightMotor);
-
-
-
+    this.diffDrive = new DifferentialDrive(leftMotor, rightMotor);
   }
 
+  public void drive(double fwd, double rot) {
+    this.drive(fwd, rot, true);
+  }
 
-
-
+  public void drive(double fwd, double rot, boolean squaredInputs) {
+    this.diffDrive.arcadeDrive(fwd, rot, squaredInputs);
+  }
 
   @Override
   public void periodic() {
